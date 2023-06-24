@@ -1,3 +1,4 @@
+import 'package:bilkent_tinder/src/utils/app_constants.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
 import 'package:bilkent_tinder/src/widgets/custom_button.dart';
@@ -35,7 +36,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   SizedBox(width: Dimensions.width10 / 2,),
                   Text(
-                    "Götür Sepeti",
+                    AppConstants.APP_NAME,
                     style: TextStyle(
                         color: AppColors.white,
                         fontWeight: FontWeight.w900,

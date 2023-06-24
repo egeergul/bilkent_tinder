@@ -1,4 +1,5 @@
 import 'package:bilkent_tinder/src/screens/home_screen.dart';
+import 'package:bilkent_tinder/src/screens/login/rules_screen.dart';
 import 'package:bilkent_tinder/src/screens/login/verification_screen.dart';
 import 'package:bilkent_tinder/src/screens/splash/splash_screen.dart';
 
@@ -17,6 +18,7 @@ class AppRoutes {
     GetPage(name: "/welcome", page: () => const WelcomeScreen() ),
     GetPage(name: "/enter_mail", page: () =>  EnterMailScreen()),
     GetPage(name: "/verification", page: () =>   VerificationScreen()),
+    GetPage(name: "/rules", page: () =>  const  RulesScreen()),
 
     GetPage(name: "/terms_privacy", page: ()=> const TermsAndPrivacy())
 
