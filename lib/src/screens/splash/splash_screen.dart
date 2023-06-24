@@ -34,7 +34,8 @@ class _SplashScreenState extends State<SplashScreen>
 
     Timer(const Duration(seconds: 3), () {
       if (Get.find<AuthController>().userLoggedIn()) {
-        Get.offNamed("");
+        // Get.offNamed("");
+        Get.toNamed("rules");
       } else {
         Get.toNamed("welcome");
       }

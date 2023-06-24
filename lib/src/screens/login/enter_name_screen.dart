@@ -7,12 +7,12 @@ import 'package:bilkent_tinder/src/widgets/show_custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class EnterMailScreen extends StatefulWidget {
+class EnterNameScreen extends StatefulWidget {
   @override
-  _EnterMailScreenState createState() => _EnterMailScreenState();
+  _EnterNameScreenState createState() => _EnterNameScreenState();
 }
 
-class _EnterMailScreenState extends State<EnterMailScreen> {
+class _EnterNameScreenState extends State<EnterNameScreen> {
   String _text = '';
   bool _isButtonDisabled = true;
 
@@ -25,7 +25,6 @@ class _EnterMailScreenState extends State<EnterMailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -36,17 +35,12 @@ class _EnterMailScreenState extends State<EnterMailScreen> {
           ),
         ),
         body: GetBuilder<AuthController>(builder: (authController) {
-          void  _submitText() async {
-            ResponseModel resp =  await authController.login(_text);
-            if(resp.isSuccess) {
-              authController.updateUserInfo("email", _text);
-              Get.toNamed("verification");
-            } else {
-              showCustomSnackBar(resp.message);
-            }
-           
-           
+          void _submitText() async {
+            authController.updateUserInfo("firstName", _text);
+            Get.toNamed("enter_bday");
+            
           }
+
           return !authController.isLoading
               ? Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -54,7 +48,7 @@ class _EnterMailScreenState extends State<EnterMailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "My school mail is",
+                        "What's your first name?",
                         style: TextStyle(
                             fontSize: Dimensions.font26,
                             fontWeight: FontWeight.bold),
@@ -63,13 +57,25 @@ class _EnterMailScreenState extends State<EnterMailScreen> {
                       TextField(
                         onChanged: _updateText,
                         decoration: const InputDecoration(
-                          hintText: 'e.g. name.surname@ug.bilkent.edu.tr',
+                          hintText: 'e.g. John',
                         ),
                       ),
                       SizedBox(height: Dimensions.height30),
-                      Text(
-                        "When you tap Continue, Götür Sepeti will send you an e-mail with verification code. The verification code will be valid for 10 minutes.",
-                        style: TextStyle(fontSize: Dimensions.font26 / 2),
+                      RichText(
+                        text: const TextSpan(
+                          style: TextStyle(fontSize: 16.0, color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text:
+                                  "This is how it'll appear on your profile. ",
+                              style: TextStyle(fontWeight: FontWeight.normal),
+                            ),
+                            TextSpan(
+                              text: "Can't change it later. ",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: Dimensions.height15),
                       Container(
@@ -79,7 +85,7 @@ class _EnterMailScreenState extends State<EnterMailScreen> {
                           child: ElevatedButton(
                             onPressed:
                                 _isButtonDisabled ? null : () => _submitText(),
-                            child: Text('CONTINUE'),
+                            child: Text('NEXT'),
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50.0),
@@ -94,6 +100,4 @@ class _EnterMailScreenState extends State<EnterMailScreen> {
               : const CustomLoader();
         }));
   }
-
-  
 }

@@ -66,7 +66,9 @@ class RulesScreen extends StatelessWidget {
                 "Always report bad behavior to someone. But not to us. Again, we don't take any responsibility."),
             Expanded(child: Container(),),
             
-            CustomButton(text: "I agree", onPressed: ()=> {}, backgroundColor: AppColors.pink2, textColor: AppColors.white,),
+            CustomButton(text: "I agree", onPressed: ()=> {
+              Get.toNamed("enter_name")
+            }, backgroundColor: AppColors.pink2, textColor: AppColors.white,),
             SizedBox(height: Dimensions.height20),
 
 
