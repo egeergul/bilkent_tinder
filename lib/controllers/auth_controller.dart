@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bilkent_tinder/src/data/repositories/auth_repo.dart';
 import 'package:bilkent_tinder/src/models/response_model.dart';
 import 'package:get/get.dart';

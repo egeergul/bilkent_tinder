@@ -1,6 +1,3 @@
-
-import 'dart:convert';
-
 import 'package:bilkent_tinder/src/data/api/api_client.dart';
 import 'package:bilkent_tinder/src/utils/app_constants.dart';
 import 'package:get/get_connect.dart';

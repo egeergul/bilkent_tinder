@@ -1,7 +1,7 @@
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 
 class TermsAndPrivacy extends StatelessWidget {
   const TermsAndPrivacy({super.key});
