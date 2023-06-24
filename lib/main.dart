@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Bilkent Tinder',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/welcome',
+      initialRoute: '/splash',
        theme: ThemeData(
          primarySwatch: Colors.pink
       ),

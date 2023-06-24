@@ -1,7 +1,9 @@
 import 'package:bilkent_tinder/controllers/auth_controller.dart';
+import 'package:bilkent_tinder/src/models/response_model.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
 import 'package:bilkent_tinder/src/widgets/custom_loader.dart';
+import 'package:bilkent_tinder/src/widgets/show_custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
@@ -28,8 +30,20 @@ class _VerificationScreenState extends State<VerificationScreen> {
         ),
         body: GetBuilder<AuthController>(builder: (authController) {
           void _submitText() async {
-            print(_code);
-            print(_onEditing);
+            ResponseModel resp = await authController.verify(_code);
+            if (resp.isSuccess) {
+              if (await authController.canLogin() == "true") {
+                // Login
+                authController.completeLogin();
+                Get.toNamed("");
+              } else {
+                // Sign Up
+                Get.toNamed("welcome");
+
+              }
+            } else {
+              showCustomSnackBar(resp.message);
+            }
           }
 
           return !authController.isLoading
@@ -46,7 +60,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       SizedBox(height: Dimensions.height30),
                       Row(
                         children: [
-                          Text( authController.getUserInfoForSignUp()["email"]),
+                          Text( authController.getUserInfo()["email"]),
                           SizedBox(width: Dimensions.width15),
 
                           OutlinedButton(

@@ -11,7 +11,7 @@ class AuthController extends GetxController implements GetxService {
 
   bool get isLoading => _isLoading;
 
-  Map<String, dynamic> _userInfoForSignUp = {};
+  Map<String, dynamic> _userInfo = {};
 
   
   Future<ResponseModel> login(String email ) async {
@@ -35,6 +35,54 @@ class AuthController extends GetxController implements GetxService {
     
   }
 
+
+  Future<ResponseModel> verify(String code ) async {
+    _isLoading = true;
+    update();
+   
+    Response response = await authRepo.verify( _userInfo["email"] , code);
+    Map responseBody = response.body;
+     
+    ResponseModel responseModel;
+    if (response.statusCode == 200) {
+      authRepo.saveUserToken(responseBody["token"]);
+      responseModel = ResponseModel(true, responseBody["message"]);
+    } else {
+      responseModel = ResponseModel(false, responseBody["error"]!);
+    }
+    _isLoading = false;
+    update();
+    return responseModel;
+    
+  }
+
+  
+  
+  Future<ResponseModel> completeLogin( ) async {
+    _isLoading = true;
+    update();   
+    Response response = await authRepo.completeLogin( _userInfo["email"] );
+    Map responseBody = response.body;
+
+    print(responseBody);
+     
+    ResponseModel responseModel;
+    if (response.statusCode == 200) {
+      authRepo.saveUserToken(responseBody["token"]);
+      responseModel = ResponseModel(true, responseBody["message"]);
+    } else {
+      responseModel = ResponseModel(false, responseBody["error"]!);
+    }
+    _isLoading = false;
+    update();
+    return responseModel;
+    
+  }
+
+  
+  Future<String> canLogin() async {
+    return await authRepo.getUserExist();
+  }
  
   bool userLoggedIn() {
     return authRepo.userLoggedIn();
@@ -44,12 +92,12 @@ class AuthController extends GetxController implements GetxService {
     return authRepo.clearSharedData();
   }
 
-  void updateUserInfoForSignUp(String key, dynamic value) {
-    _userInfoForSignUp[key] = value;
+  void updateUserInfo(String key, dynamic value) {
+    _userInfo[key] = value;
   }
 
-  Map<String, dynamic> getUserInfoForSignUp() {
-    return _userInfoForSignUp;
+  Map<String, dynamic> getUserInfo() {
+    return _userInfo;
   }
 
   // Future<Response> deleteAccount(String email) async {

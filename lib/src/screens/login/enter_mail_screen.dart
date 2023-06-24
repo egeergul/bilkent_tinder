@@ -39,7 +39,7 @@ class _EnterMailScreenState extends State<EnterMailScreen> {
           void  _submitText() async {
             ResponseModel resp =  await authController.login(_text);
             if(resp.isSuccess) {
-              authController.updateUserInfoForSignUp("email", _text);
+              authController.updateUserInfo("email", _text);
               Get.toNamed("verification");
             } else {
               showCustomSnackBar(resp.message);

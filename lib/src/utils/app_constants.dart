@@ -8,11 +8,15 @@ class AppConstants {
 
   // Auth Endpoints
   static const String LOGIN_URI = '/user/login';
+  static const String VERIFY_URI = '/user/verify';
+  static const String COMPLETE_LOGIN_URI = '/user/complete-login';
+  
 
  
 
   /*config*/
   static const String TOKEN = "TOKEN";
+  static const String USER = "USER";
   static const String USER_EXIST = "USER_EXIST";
   
 }

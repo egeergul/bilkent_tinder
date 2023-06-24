@@ -27,11 +27,21 @@ class AuthRepo {
       AppConstants.LOGIN_URI, {"email": email});
   }
 
+Future<Response> verify(String email, String code) async {
+    return await apiClient.postData(
+      AppConstants.VERIFY_URI, {"email": email, "verificationNumber": code});
+  }
+
+  Future<Response> completeLogin(String email) async {
+    return await apiClient.postData(
+      AppConstants.COMPLETE_LOGIN_URI, {"email": email});
+  }
   Future<bool> saveUserToken(String token) async {
     apiClient.token = token;
     apiClient.updateHeader(token);
     return await sharedPreferences.setString(AppConstants.TOKEN, token);
   }
+
 
   Future<bool> setUserExist(String value) async {
     return await sharedPreferences.setString(AppConstants.USER_EXIST, value);
