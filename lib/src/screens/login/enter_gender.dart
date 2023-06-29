@@ -12,16 +12,12 @@ class EnterGenderScreen extends StatefulWidget {
   _EnterGenderScreenState createState() => _EnterGenderScreenState();
 }
 
-class _EnterGenderScreenState extends State<EnterGenderScreen> {
-  String _text = '';
-  bool _isButtonDisabled = true;
+enum Gender { woman, man }
 
-  void _updateText(String newText) {
-    setState(() {
-      _text = newText;
-      _isButtonDisabled = newText.isEmpty;
-    });
-  }
+class _EnterGenderScreenState extends State<EnterGenderScreen> {
+  bool _isButtonDisabled = true;
+  Gender? _gender;
+  bool _showGender = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +32,16 @@ class _EnterGenderScreenState extends State<EnterGenderScreen> {
         ),
         body: GetBuilder<AuthController>(builder: (authController) {
           void _submitText() async {
-            authController.updateUserInfo("firstName", _text);
-            Get.toNamed("enter_bday");
+            if (_gender == Gender.man) {
+              authController.updateUserInfo("gender", "man");
+            } else if (_gender == Gender.woman) {
+              authController.updateUserInfo("gender", "woman");
+            } else {
+              showCustomSnackBar("You have to select a gender!");
+            }
+            authController.updateUserInfo("showGender", _showGender);
             
+            Get.toNamed("enter_sexual_orientation");
           }
 
           return !authController.isLoading
@@ -54,30 +57,90 @@ class _EnterGenderScreenState extends State<EnterGenderScreen> {
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: Dimensions.height30 * 1.5),
-                      TextField(
-                        onChanged: _updateText,
-                        decoration: const InputDecoration(
-                          hintText: 'e.g. John',
+                      Column(
+                        children: <Widget>[
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _gender = Gender.woman;
+                                _isButtonDisabled = false;
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              elevation: 0,
+                              side: BorderSide(
+                                color: _gender == Gender.woman
+                                    ? AppColors.pink2
+                                    : Colors.grey,
+                                width: 1.0,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100.0),
+                              ),
+                            ),
+                            child: Container(
+                              width: double.infinity,
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Woman',
+                                style: TextStyle(
+                                  color: _gender == Gender.woman
+                                      ? AppColors.pink2
+                                      : Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _gender = Gender.man;
+                                _isButtonDisabled = false;
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.transparent,
+                              elevation: 0,
+                              side: BorderSide(
+                                color: _gender == Gender.man
+                                    ? AppColors.pink2
+                                    : Colors.grey,
+                                width: 1.0,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100.0),
+                              ),
+                            ),
+                            child: Container(
+                              width: double.infinity,
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Man',
+                                style: TextStyle(
+                                  color: _gender == Gender.man
+                                      ? AppColors.pink2
+                                      : Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Expanded(
+                        child: SizedBox(),
+                      ),
+                      ListTile(
+                        title: Text('Show my gender on my profile'),
+                        leading: Checkbox(
+                          value: _showGender,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              _showGender = value!;
+                            });
+                          },
                         ),
                       ),
-                      SizedBox(height: Dimensions.height30),
-                      RichText(
-                        text: const TextSpan(
-                          style: TextStyle(fontSize: 16.0, color: Colors.black),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text:
-                                  "This is how it'll appear on your profile. ",
-                              style: TextStyle(fontWeight: FontWeight.normal),
-                            ),
-                            TextSpan(
-                              text: "Can't change it later. ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: Dimensions.height15),
                       Container(
                         width: double.infinity,
                         child: Padding(
