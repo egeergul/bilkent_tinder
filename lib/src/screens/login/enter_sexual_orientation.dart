@@ -19,7 +19,7 @@ class _EnterSexualOrientationScreenState
   bool _isButtonDisabled = true;
   bool _showOrientation = false;
 
-  Set<String> _selectedOptions = {};
+  List<String> _selectedOptions = [];
   String capitalize(String text) {
     return text.isEmpty ? '' : text[0].toUpperCase() + text.substring(1);
   }
@@ -37,9 +37,10 @@ class _EnterSexualOrientationScreenState
         ),
         body: GetBuilder<AuthController>(builder: (authController) {
           void _submitText() async {
-            authController.updateUserInfo("showGender", _showOrientation);
 
-            Get.toNamed("enter_bday");
+            authController.updateUserInfo("showOrientation", _showOrientation);
+            authController.updateUserInfo("sexualOrientation", _selectedOptions);
+            Get.toNamed("enter_interested_gender");
           }
 
           return !authController.isLoading
@@ -96,6 +97,11 @@ class _EnterSexualOrientationScreenState
                                       }
                                     } else {
                                       _selectedOptions.remove(option);
+                                    }
+                                    if (_selectedOptions.length >= 1) {
+                                      _isButtonDisabled = false;
+                                    } else {
+                                      _isButtonDisabled = true;
                                     }
                                   });
                                 },
