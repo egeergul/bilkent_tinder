@@ -56,9 +56,9 @@ class _EnterSexualOrientationScreenState
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: Dimensions.height10 ),
-                      const Text(
+                      Text(
                         'Select up to 3',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: Dimensions.font16, color: Colors.grey),
                       ),
                       Column(
                         children: [

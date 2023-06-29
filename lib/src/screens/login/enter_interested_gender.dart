@@ -17,7 +17,6 @@ enum InterestedInSeeing { woman, man, everyone }
 class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScreen> {
   bool _isButtonDisabled = true;
   InterestedInSeeing? _gender;
-  bool _showInterestedGender = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +40,7 @@ class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScree
             } else {
               showCustomSnackBar("You have to select a gender!");
             }
-            authController.updateUserInfo("showGender", _showInterestedGender);
-            
-            Get.toNamed("enter_sexual_orientation");
+            Get.toNamed("enter_im_looking_for");
           }
 
           return !authController.isLoading
@@ -166,17 +163,7 @@ class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScree
                       const Expanded(
                         child: SizedBox(),
                       ),
-                      ListTile(
-                        title: Text('Show my gender on my profile'),
-                        leading: Checkbox(
-                          value: _showInterestedGender,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              _showInterestedGender = value!;
-                            });
-                          },
-                        ),
-                      ),
+                     
                       Container(
                         width: double.infinity,
                         child: Padding(

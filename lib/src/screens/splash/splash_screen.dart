@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen>
               scale: animation,
               child: Center(
                   child: Image.asset(
-                "lib/assets/images/sad_dog.jpg",
+                "lib/assets/images/tinder_logo.png",
                 width: Dimensions.splashImage,
               ))),
         ],

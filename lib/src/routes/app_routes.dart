@@ -1,6 +1,7 @@
 import 'package:bilkent_tinder/src/screens/home_screen.dart';
 import 'package:bilkent_tinder/src/screens/login/enter_bday.dart';
 import 'package:bilkent_tinder/src/screens/login/enter_gender.dart';
+import 'package:bilkent_tinder/src/screens/login/enter_im_looking_for.dart';
 import 'package:bilkent_tinder/src/screens/login/enter_interested_gender.dart';
 import 'package:bilkent_tinder/src/screens/login/enter_name_screen.dart';
 import 'package:bilkent_tinder/src/screens/login/enter_sexual_orientation.dart';
@@ -28,6 +29,7 @@ class AppRoutes {
     GetPage(name: "/enter_gender", page: () =>   EnterGenderScreen()),
     GetPage(name: "/enter_sexual_orientation", page: () =>   EnterSexualOrientationScreen()),
     GetPage(name: "/enter_interested_gender", page: () =>   EnterInterestedGenderScreen()),
+    GetPage(name: "/enter_im_looking_for", page: () =>   EnterImLookingForScreen()),
 
     // App
     GetPage(name: "/", page: () => HomeScreen() ),
