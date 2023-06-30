@@ -36,11 +36,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 // Login
                 authController.completeLogin();
                 
-                
-                // FOR NOW
-                // Navigator.of(context).pushNamedAndRemoveUntil('/splash', (Route route) => false);
-                // Get.toNamed("");
-                Get.toNamed("rules");
+                Navigator.of(context).pushNamedAndRemoveUntil('/', (Route route) => false);
+
+
               } else {
                 // Sign Up
                 Get.toNamed("rules");

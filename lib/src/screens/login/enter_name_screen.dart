@@ -1,9 +1,7 @@
 import 'package:bilkent_tinder/controllers/auth_controller.dart';
-import 'package:bilkent_tinder/src/models/response_model.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
 import 'package:bilkent_tinder/src/widgets/custom_loader.dart';
-import 'package:bilkent_tinder/src/widgets/show_custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

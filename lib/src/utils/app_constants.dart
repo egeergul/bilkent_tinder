@@ -10,12 +10,14 @@ class AppConstants {
   static const String LOGIN_URI = '/user/login';
   static const String VERIFY_URI = '/user/verify';
   static const String COMPLETE_LOGIN_URI = '/user/complete-login';
+  static const String COMPLETE_SIGNUP_URI = '/user/complete-signup';
   
 
  
 
   /*config*/
   static const String TOKEN = "TOKEN";
+  static const String LOGGED_IN = "LOGGED_IN";
   static const String USER = "USER";
   static const String USER_EXIST = "USER_EXIST";
   

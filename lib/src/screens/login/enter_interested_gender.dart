@@ -1,5 +1,4 @@
 import 'package:bilkent_tinder/controllers/auth_controller.dart';
-import 'package:bilkent_tinder/src/models/response_model.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
 import 'package:bilkent_tinder/src/widgets/custom_loader.dart';
@@ -12,7 +11,7 @@ class EnterInterestedGenderScreen extends StatefulWidget {
   _EnterInterestedGenderScreenState createState() => _EnterInterestedGenderScreenState();
 }
 
-enum InterestedInSeeing { woman, man, everyone }
+enum InterestedInSeeing { women, men, everyone }
 
 class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScreen> {
   bool _isButtonDisabled = true;
@@ -31,10 +30,10 @@ class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScree
         ),
         body: GetBuilder<AuthController>(builder: (authController) {
           void _submitText() async {
-            if (_gender == InterestedInSeeing.man) {
-              authController.updateUserInfo("interestedInSeeing", "man");
-            } else if (_gender == InterestedInSeeing.woman) {
-              authController.updateUserInfo("interestedInSeeing", "woman");
+            if (_gender == InterestedInSeeing.men) {
+              authController.updateUserInfo("interestedInSeeing", "men");
+            } else if (_gender == InterestedInSeeing.women) {
+              authController.updateUserInfo("interestedInSeeing", "women");
             } else if (_gender == InterestedInSeeing.everyone) {
               authController.updateUserInfo("interestedInSeeing", "everyone");
             } else {
@@ -61,7 +60,7 @@ class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScree
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                _gender = InterestedInSeeing.woman;
+                                _gender = InterestedInSeeing.women;
                                 _isButtonDisabled = false;
                               });
                             },
@@ -69,7 +68,7 @@ class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScree
                               primary: Colors.transparent,
                               elevation: 0,
                               side: BorderSide(
-                                color: _gender == InterestedInSeeing.woman
+                                color: _gender == InterestedInSeeing.women
                                     ? AppColors.pink2
                                     : Colors.grey,
                                 width: 1.0,
@@ -82,9 +81,9 @@ class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScree
                               width: double.infinity,
                               alignment: Alignment.center,
                               child: Text(
-                                'Woman',
+                                'Women',
                                 style: TextStyle(
-                                  color: _gender == InterestedInSeeing.woman
+                                  color: _gender == InterestedInSeeing.women
                                       ? AppColors.pink2
                                       : Colors.black,
                                 ),
@@ -94,7 +93,7 @@ class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScree
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                _gender = InterestedInSeeing.man;
+                                _gender = InterestedInSeeing.men;
                                 _isButtonDisabled = false;
                               });
                             },
@@ -102,7 +101,7 @@ class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScree
                               primary: Colors.transparent,
                               elevation: 0,
                               side: BorderSide(
-                                color: _gender == InterestedInSeeing.man
+                                color: _gender == InterestedInSeeing.men
                                     ? AppColors.pink2
                                     : Colors.grey,
                                 width: 1.0,
@@ -115,9 +114,9 @@ class _EnterInterestedGenderScreenState extends State<EnterInterestedGenderScree
                               width: double.infinity,
                               alignment: Alignment.center,
                               child: Text(
-                                'Man',
+                                'Men',
                                 style: TextStyle(
-                                  color: _gender == InterestedInSeeing.man
+                                  color: _gender == InterestedInSeeing.men
                                       ? AppColors.pink2
                                       : Colors.black,
                                 ),

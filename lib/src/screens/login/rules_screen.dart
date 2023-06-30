@@ -1,7 +1,6 @@
 import 'package:bilkent_tinder/src/utils/app_constants.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
-import 'package:bilkent_tinder/src/widgets/custom_action_button.dart';
 import 'package:bilkent_tinder/src/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

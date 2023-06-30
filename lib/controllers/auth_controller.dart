@@ -1,5 +1,6 @@
 import 'package:bilkent_tinder/src/data/repositories/auth_repo.dart';
 import 'package:bilkent_tinder/src/models/response_model.dart';
+import 'package:bilkent_tinder/src/models/user_model.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController implements GetxService {
@@ -57,14 +58,11 @@ class AuthController extends GetxController implements GetxService {
   }
 
   
-  
   Future<ResponseModel> completeLogin( ) async {
     _isLoading = true;
     update();   
     Response response = await authRepo.completeLogin( _userInfo["email"] );
     Map responseBody = response.body;
-
-    print(responseBody);
      
     ResponseModel responseModel;
     if (response.statusCode == 200) {
@@ -79,6 +77,45 @@ class AuthController extends GetxController implements GetxService {
     
   }
 
+
+ Future<ResponseModel> completeSignUp( ) async {
+    _isLoading = true;
+    update();   
+
+    UserModel user = UserModel(
+      id: -1,
+      firstName: _userInfo["firstName"],
+      email: _userInfo["email"],
+      sexualOrientation: _userInfo["sexualOrientation"],
+      showOrientation: _userInfo["showOrientation"],
+      gender: _userInfo["gender"],
+      showGender: _userInfo["showGender"],
+      birthDay: _userInfo["birthDay"],
+      interests: ["home workout", "netflix", "baking", "volunteering", "broadway"],
+      lookingFor: _userInfo["lookingFor"],
+      interestedInSeeing: _userInfo["interestedInSeeing"],
+      
+    );
+
+
+    Response response = await authRepo.completeSignUp( user );
+
+    Map responseBody = response.body;
+    print(responseBody);
+     
+    ResponseModel responseModel;
+    if (response.statusCode == 200) {
+      authRepo.saveUserToken(responseBody["token"]);
+      authRepo.setLoggedIn();
+      responseModel = ResponseModel(true, responseBody["message"]);
+    } else {
+      responseModel = ResponseModel(false, responseBody["error"]!);
+    }
+    _isLoading = false;
+    update();
+    return responseModel;
+    
+  }
   
   Future<String> canLogin() async {
     return await authRepo.getUserExist();

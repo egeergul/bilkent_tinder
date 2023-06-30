@@ -6,7 +6,6 @@ import 'package:bilkent_tinder/src/widgets/custom_loader.dart';
 import 'package:bilkent_tinder/src/widgets/show_custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class EnterImLookingForScreen extends StatefulWidget {
   @override
@@ -52,7 +51,12 @@ class _EnterImLookingForScreenState extends State<EnterImLookingForScreen> {
           void _submitText() async {
             authController.updateUserInfo("lookingFor", options[_selectedOption]);
 
-            Get.toNamed("enter_interested_gender");
+            ResponseModel resp = await authController.completeSignUp();
+            if (resp.isSuccess) {
+              Get.toNamed("");
+            } else {
+              showCustomSnackBar(resp.message);
+            }
           }
 
           return !authController.isLoading
