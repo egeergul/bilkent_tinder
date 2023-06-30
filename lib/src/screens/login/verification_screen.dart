@@ -35,7 +35,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
               if (await authController.canLogin() == "true") {
                 // Login
                 authController.completeLogin();
-                
                 Navigator.of(context).pushNamedAndRemoveUntil('/', (Route route) => false);
 
 

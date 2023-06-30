@@ -2,6 +2,7 @@ import 'package:bilkent_tinder/src/utils/app_constants.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
 import 'package:bilkent_tinder/src/widgets/custom_button.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -63,6 +64,30 @@ class RulesScreen extends StatelessWidget {
             SizedBox(height: Dimensions.height10/2),
             const Text(
                 "Always report bad behavior to someone. But not to us. Again, we don't take any responsibility."),
+            SizedBox(height: Dimensions.height20),
+            
+            const Text("Agree our terms.", style: TextStyle( fontWeight: FontWeight.bold)),
+            SizedBox(height: Dimensions.height10/2),
+            RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  const TextSpan(
+                    text:   "Be aware that by clicking 'I Agree', you will be accepting our ",
+                    style: TextStyle(color: Colors.black)
+                  ),
+                  TextSpan(
+                      text: 'Terms & Conditions.',
+                      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => Get.toNamed("terms_privacy")),
+                  
+                ],
+              ),
+            ),
+            
+        
+            
+            
             Expanded(child: Container(),),
             
             CustomButton(text: "I agree", onPressed: ()=> {

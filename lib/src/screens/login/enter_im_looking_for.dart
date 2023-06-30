@@ -53,7 +53,7 @@ class _EnterImLookingForScreenState extends State<EnterImLookingForScreen> {
 
             ResponseModel resp = await authController.completeSignUp();
             if (resp.isSuccess) {
-              Get.toNamed("");
+              Navigator.of(context).pushNamedAndRemoveUntil('/', (Route route) => false);
             } else {
               showCustomSnackBar(resp.message);
             }
@@ -136,7 +136,7 @@ class _EnterImLookingForScreenState extends State<EnterImLookingForScreen> {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: optionEmojis[index], // emoji characters
+                          text: optionEmojis[optionIndex], // emoji characters
                           style: TextStyle(
                             fontFamily: 'EmojiOne',
                             fontSize: Dimensions.font26
@@ -146,7 +146,7 @@ class _EnterImLookingForScreenState extends State<EnterImLookingForScreen> {
                     ),
                   ),
                   Text(
-                    options[index]!,
+                    options[optionIndex]!,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.black,
