@@ -49,10 +49,23 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: GetBuilder<AuthController>(builder: (authController) {
         final List<Widget> _widgetOptions = <Widget>[
-          ElevatedButton(
-              onPressed: () =>
-                  {authController.clearSharedData(), Get.toNamed("/welcome")},
-              child: const Text("Logout")),
+          Column(
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  print(authController.getUserInfo());
+                  print(await authController.getToken());
+                  },
+                child: const Text("Show User"),
+              ),
+              ElevatedButton(
+                  onPressed: () => {
+                        authController.clearSharedData(),
+                        Get.toNamed("/welcome")
+                      },
+                  child: const Text("Logout")),
+            ],
+          ),
           const Text(
             'Index 1: Business',
             style: optionStyle,

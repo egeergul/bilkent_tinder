@@ -4,12 +4,12 @@ class UserModel {
   int? id;
   String? firstName;
   String? email;
-  List<String>? sexualOrientation;
+  List<dynamic>? sexualOrientation;
   bool? showOrientation;
   String? gender;
   bool? showGender;
   DateTime? birthDay;
-  List<String>? interests;
+  List<dynamic>? interests;
   String? lookingFor;
   String? interestedInSeeing;
 
@@ -32,14 +32,14 @@ class UserModel {
     id = json['id'];
     firstName = json['firstName'];
     email = json['email'];
-    sexualOrientation = jsonDecode(json['sexualOrientation']);
+    sexualOrientation = json['sexualOrientation'];
     showOrientation = json['showOrientation'];
     gender = json['gender'];
     showGender = json['showGender'];
-    birthDay = json["birthDay"];
+    birthDay = DateTime.parse(json["birthDay"]);
     interests = json["interests"];
     lookingFor = json["lookingFor"];
-    interestedInSeeing = jsonDecode(json["interestedInSeeing"]);
+    interestedInSeeing = json["interestedInSeeing"];
   }
 
   Map<String, dynamic> toJson() {

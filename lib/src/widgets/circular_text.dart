@@ -1,3 +1,4 @@
+import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CircularText extends StatelessWidget {
@@ -21,8 +22,15 @@ class CircularText extends StatelessWidget {
         text,
         style: TextStyle(fontSize: textSize),
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(100.0),
+      backgroundColor: Colors.transparent,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(100),
+        ),
+        side: BorderSide(
+          color: Colors.grey,
+          width: 1.0,
+        ),
       ),
     );
   }

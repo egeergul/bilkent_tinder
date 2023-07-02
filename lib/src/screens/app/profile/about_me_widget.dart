@@ -1,13 +1,16 @@
+import 'package:bilkent_tinder/src/models/user_model.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class AboutMeWidget extends StatelessWidget {
-  const AboutMeWidget({super.key});
+  final UserModel user;
+  const AboutMeWidget({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+
       padding: EdgeInsets.all(Dimensions.width20),
       decoration: const BoxDecoration(
         border: Border(
@@ -25,7 +28,7 @@ class AboutMeWidget extends StatelessWidget {
                 style: DefaultTextStyle.of(context).style,
                 children: <TextSpan>[
                   TextSpan(
-                    text: 'Ege ',
+                    text: "${user.firstName} ",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: Dimensions.font26,

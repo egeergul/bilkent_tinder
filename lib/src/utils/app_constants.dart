@@ -12,13 +12,15 @@ class AppConstants {
   static const String COMPLETE_LOGIN_URI = '/user/complete-login';
   static const String COMPLETE_SIGNUP_URI = '/user/complete-signup';
   
-
- 
+  // User Endpoints
+  static const String USER_INFO_URI = "/user/";
+  
 
   /*config*/
   static const String TOKEN = "TOKEN";
   static const String LOGGED_IN = "LOGGED_IN";
   static const String USER = "USER";
   static const String USER_EXIST = "USER_EXIST";
+
   
 }

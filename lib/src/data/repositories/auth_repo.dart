@@ -49,6 +49,10 @@ class AuthRepo {
     return await sharedPreferences.setString(AppConstants.TOKEN, token);
   }
 
+  // Future<bool> saveUser(UserModel user) async {
+  //   return await sharedPreferences.setString(AppConstants.USER, );
+  // }
+
   Future<bool> setLoggedIn() async {
     return await sharedPreferences.setString(AppConstants.LOGGED_IN, "true");
   }

@@ -24,7 +24,7 @@ class AuthController extends GetxController implements GetxService {
      
     ResponseModel responseModel;
     if (response.statusCode == 200) {
-      await authRepo.setUserExist(responseBody["userExist"].toString());
+      authRepo.setUserExist(responseBody["userExist"].toString());
 
       responseModel = ResponseModel(true, responseBody["message"]);
     } else {
@@ -67,6 +67,7 @@ class AuthController extends GetxController implements GetxService {
     ResponseModel responseModel;
     if (response.statusCode == 200) {
       authRepo.saveUserToken(responseBody["token"]);
+      // authRepo.saveUser(responseBody["user"]);
       responseModel = ResponseModel(true, responseBody["message"]);
     } else {
       responseModel = ResponseModel(false, responseBody["error"]!);
@@ -137,6 +138,9 @@ class AuthController extends GetxController implements GetxService {
     return _userInfo;
   }
 
+  dynamic getToken() async {
+    return  await authRepo.getUserToken();
+  }
   // Future<Response> deleteAccount(String email) async {
   //   return await authRepo.deleteAccount(email);
   // }
