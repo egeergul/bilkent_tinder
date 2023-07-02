@@ -1,3 +1,4 @@
+import 'package:bilkent_tinder/controllers/auth_controller.dart';
 import 'package:bilkent_tinder/src/utils/app_constants.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
@@ -12,8 +13,8 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Scaffold(body: GetBuilder<AuthController>(builder: (authController) {
+      return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [AppColors.pink3, AppColors.pink1],
@@ -28,13 +29,19 @@ class WelcomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  ElevatedButton(onPressed: () {
+                    print(authController.getUserInfo());
+                    print(authController.clearSharedData());
+                  }, child: Text("LOGOUT")),
                   SvgPicture.asset(
                     'lib/assets/icons/tinder_icon.svg',
                     width: Dimensions.font20 * 1.5, // Set the desired width
-                    height: Dimensions.font20  * 1.5, // Set the desired height
+                    height: Dimensions.font20 * 1.5, // Set the desired height
                     color: Colors.white, // Set the desired color
                   ),
-                  SizedBox(width: Dimensions.width10 / 2,),
+                  SizedBox(
+                    width: Dimensions.width10 / 2,
+                  ),
                   Text(
                     AppConstants.APP_NAME,
                     style: TextStyle(
@@ -102,7 +109,7 @@ class WelcomeScreen extends StatelessWidget {
             )
           ]),
         ),
-      ),
-    );
+      );
+    }));
   }
 }
