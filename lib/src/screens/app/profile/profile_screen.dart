@@ -29,8 +29,8 @@ class _ProfileScreenState extends State<ProfileScreen>
           ? SingleChildScrollView(
               child: Column(children: [
               AboutMeWidget(user: Get.find<UserController>().user!),
-              RelationshipGoalsWidget(),
-              InterestsWidget(),
+              RelationshipGoalsWidget(user: Get.find<UserController>().user!),
+              InterestsWidget(user: Get.find<UserController>().user!),
             ]))
           : CustomLoader();
     }));

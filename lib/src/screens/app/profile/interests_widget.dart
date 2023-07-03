@@ -1,10 +1,12 @@
+import 'package:bilkent_tinder/src/models/user_model.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
 import 'package:bilkent_tinder/src/widgets/circular_text.dart';
 import 'package:flutter/material.dart';
 
 class InterestsWidget extends StatelessWidget {
-  const InterestsWidget({super.key});
+  final UserModel user;
+  const InterestsWidget({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +30,21 @@ class InterestsWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: Dimensions.font16 * 1.2),
             ),
-            SizedBox(height: Dimensions.height15,),
-
-             Wrap(
-            spacing: 8.0,
-            runSpacing: 8.0,
-            children:  [CircularText(hasIcon: false, iconData: Icons.abc, text: "Ege ergül", textSize: Dimensions.font16),
-            CircularText(hasIcon: false, iconData: Icons.abc, text: "Ege ergül", textSize: Dimensions.font16),
-            CircularText(hasIcon: false, iconData: Icons.abc, text: "Ege ergül", textSize: Dimensions.font16),
-            CircularText(hasIcon: false, iconData: Icons.abc, text: "Ege ergül", textSize: Dimensions.font16),]
-          ),
-        
-            
+            SizedBox(
+              height: Dimensions.height15,
+            ),
+            Wrap(
+                spacing: 8.0,
+                runSpacing: 8.0,
+                children: user.interests!
+                    .map(
+                      (interest) => CircularText(
+                          hasIcon: false,
+                          iconData: Icons.abc,
+                          text: interest,
+                          textSize: Dimensions.font16),
+                    )
+                    .toList()),
           ]),
     );
   }

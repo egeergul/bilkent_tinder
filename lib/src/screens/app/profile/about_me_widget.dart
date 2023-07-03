@@ -7,6 +7,7 @@ class AboutMeWidget extends StatelessWidget {
   final UserModel user;
   const AboutMeWidget({super.key, required this.user});
 
+
   @override
   Widget build(BuildContext context) {
     return Container(

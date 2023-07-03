@@ -1,10 +1,12 @@
+import 'package:bilkent_tinder/src/models/user_model.dart';
 import 'package:bilkent_tinder/src/utils/colors.dart';
 import 'package:bilkent_tinder/src/utils/dimensions.dart';
 import 'package:bilkent_tinder/src/widgets/circular_text.dart';
 import 'package:flutter/material.dart';
 
 class RelationshipGoalsWidget extends StatelessWidget {
-  const RelationshipGoalsWidget({super.key});
+  final UserModel user;
+  const RelationshipGoalsWidget({super.key, required this.user });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class RelationshipGoalsWidget extends StatelessWidget {
                   fontSize: Dimensions.font16 * 1.2),
             ),
             SizedBox(height: Dimensions.height15,),
-            CircularText(hasIcon: true, iconData: Icons.abc, text: "Ege ergül", textSize: Dimensions.font16)
+            CircularText(hasIcon: true, iconData: Icons.remove_red_eye, text: user.lookingFor!, textSize: Dimensions.font16)
           ]),
     );
   }
