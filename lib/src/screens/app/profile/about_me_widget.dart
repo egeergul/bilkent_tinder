@@ -10,7 +10,6 @@ class AboutMeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       padding: EdgeInsets.all(Dimensions.width20),
       decoration: const BoxDecoration(
         border: Border(
@@ -35,7 +34,8 @@ class AboutMeWidget extends StatelessWidget {
                         color: AppColors.grey),
                   ),
                   TextSpan(
-                    text: '21 ',
+                    text:
+                        "${(DateTime.now().difference(user.birthDay!).inDays / 365).floor()} ",
                     style: TextStyle(
                         fontSize: Dimensions.font20, color: AppColors.grey),
                   )
@@ -45,18 +45,20 @@ class AboutMeWidget extends StatelessWidget {
             SizedBox(
               height: Dimensions.height10,
             ),
-            Row(
-              children: [
-                Icon(Icons.person_outline_rounded),
-                SizedBox(
-                  width: Dimensions.width10,
-                ),
-                Text(
-                  "Questioning man",
-                  style: TextStyle(fontSize: Dimensions.font16),
-                ),
-              ],
-            ),
+            user.showGender! || user.showOrientation!
+                ? Row(
+                    children: [
+                      const Icon(Icons.person_outline_rounded),
+                      SizedBox(
+                        width: Dimensions.width10,
+                      ),
+                      Text(
+                        "${user.showOrientation! ? user.sexualOrientation!.join(", " ) : ''} ${user.showGender! ? user.gender : ''}",
+                        style: TextStyle(fontSize: Dimensions.font16),
+                      ),
+                    ],
+                  )
+                : Container(),
             SizedBox(
               height: Dimensions.height20,
             ),
@@ -66,10 +68,12 @@ class AboutMeWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: Dimensions.font16 * 1.2),
             ),
+            
+            user.bio != null ?
             Text(
-              "Lorem10! AGa mafk sfks lksdfş ksşke şsdlmfş",
+              user.bio!,
               style: TextStyle(fontSize: Dimensions.font16),
-            ),
+            ): Container(),
           ]),
     );
   }

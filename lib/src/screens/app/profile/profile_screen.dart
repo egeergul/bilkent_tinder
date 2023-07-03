@@ -20,8 +20,8 @@ class _ProfileScreenState extends State<ProfileScreen>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    bool _userLoggedIn = Get.find<AuthController>().userLoggedIn();
-    if (_userLoggedIn) {
+    bool userLoggedIn = Get.find<AuthController>().userLoggedIn();
+    if (userLoggedIn) {
       Get.find<UserController>().getUserInfo();
     }
     return Scaffold(body: GetBuilder<UserController>(builder: (userController) {

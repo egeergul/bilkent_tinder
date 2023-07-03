@@ -12,6 +12,7 @@ class UserModel {
   List<dynamic>? interests;
   String? lookingFor;
   String? interestedInSeeing;
+  String? bio;
 
 
   UserModel(
@@ -25,7 +26,8 @@ class UserModel {
       this.birthDay,
       this.interests,
       this.lookingFor,
-      this.interestedInSeeing
+      this.interestedInSeeing,
+      this.bio
       });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,7 @@ class UserModel {
     interests = json["interests"];
     lookingFor = json["lookingFor"];
     interestedInSeeing = json["interestedInSeeing"];
+    bio = json["bio"];
   }
 
   Map<String, dynamic> toJson() {
@@ -54,7 +57,8 @@ class UserModel {
       "birthDay": birthDay!.toIso8601String(),
       "interests": interests,
       "lookingFor": lookingFor,
-      "interestedInSeeing":  interestedInSeeing 
+      "interestedInSeeing":  interestedInSeeing,
+      "bio": bio 
     };
   }
  
